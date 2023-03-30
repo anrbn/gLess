@@ -13,7 +13,8 @@ def check_user_permissions(access_token, project_id):
         "cloudfunctions.functions.update",
         "cloudfunctions.functions.delete",
         "cloudfunctions.functions.list",
-        "cloudfunctions.functions.setIamPolicy",   
+        "cloudfunctions.functions.setIamPolicy",
+        "iam.serviceAccountKeys.create",
     ]
 
     body = {
@@ -80,6 +81,13 @@ def check_user_permissions(access_token, project_id):
             print('    main.py --project-id abc-123456 --location us-east1 --function-name function1 --setiambinding allUsers')
         else:
             print("\n[!] IAM Policy cannot be Binded to the Cloud Function.")
+
+        if "iam.serviceAccountKeys.create" in granted_permissions:
+            print("\n[+] Service Account Key can be Created and Downloaded.")
+            print("    Run the following command to Create a Service Account key and Download it.")
+            print('    main.py --project-id abc-123456 --createsakey')
+        else:
+            print("\n[!] Service Account Key can't be Created nor Downloaded.")
 
     except HttpError as error:
         print(f"\n[!] Error!: {error}")
