@@ -1,5 +1,9 @@
 # gLess
 
+
+## Requirements and Compatibility:
+gLess is developed using Python 3 and requires Python 3 to run. It is compatible with both Windows and Unix-based systems.
+
 ## Usage:
 Deploy a Cloud Function
 ```powershell
