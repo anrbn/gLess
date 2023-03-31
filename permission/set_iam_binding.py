@@ -29,8 +29,7 @@ def set_iam_binding(access_token, location, function_name, project_id, principal
         print(f"    - Function Invocation URL: {url}")
 
     except Exception as e:
-        error_message = str(e)
-        if "'cloudfunctions.functions.setIamPolicy' denied" in error_message:
+        if "'cloudfunctions.functions.setIamPolicy' denied" in str(e):
             print("    - You can't set IAM Policy Binding since you don't have the 'cloudfunctions.functions.setIamPolicy' Permission")
         else:
-            print(f"    - Error: {error_message}")
+            print(f"    - Error: {str(e)}")

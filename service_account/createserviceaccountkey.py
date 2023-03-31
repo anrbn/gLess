@@ -9,22 +9,18 @@ def createserviceaccountkey(project_id):
     service_account_email = input('    - Enter Service Account Email: ')
     access_token = input('    - Enter Access Token: ')
     output_filename = f"{service_account_email}.json"
-
     channel = grpc.secure_channel("iam.googleapis.com:443", grpc.ssl_channel_credentials())
     interceptor = AccessTokenAuthInterceptor(access_token)
     channel = grpc.intercept_channel(channel, interceptor)
-
     stub = IAMStub(channel)
-
     request = CreateServiceAccountKeyRequest(
         name=f"projects/{project_id}/serviceAccounts/{service_account_email}",
         private_key_type=ServiceAccountPrivateKeyType.TYPE_GOOGLE_CREDENTIALS_FILE,
         key_algorithm=KEY_ALG_RSA_2048
     )
 
-    response = stub.CreateServiceAccountKey(request)
-
     try:
+        response = stub.CreateServiceAccountKey(request)
         key_data = response.private_key_data
         with open(output_filename, "wb") as key_file:
             key_file.write(key_data)
@@ -32,9 +28,11 @@ def createserviceaccountkey(project_id):
         print(f'    - Saved {service_account_email} key to {service_account_email}.json')
 
     except Exception as e:
-        error_message = str(e)
-        if "'iam.serviceAccountKeys.create' denied" in error_message:
+        if "Identity and Access Management (IAM) API has not been used" in str(e):
+            print("    - Identity and Access Management API is disabled, please enable it and try again.")
+            print("    - Run 'gcloud services enable iam.googleapis.com' to enable IAM API")
+        elif "'iam.serviceAccountKeys.create' denied" in str(e):
             print("    - Permission iam.serviceAccountKeys.create denied")
             print(f"    - You can't create and download the Service Account Key since you don't have the 'iam.serviceAccountKeys.create' Permission")
         else:
-            print(f"    - Error: {str(e)}")
+            print(f"   - Error: {str(e)}")

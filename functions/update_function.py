@@ -1,4 +1,3 @@
-import argparse
 from google.cloud.functions_v1 import CloudFunctionsServiceClient, CloudFunction, UpdateFunctionRequest
 import google.oauth2.credentials
 
@@ -27,11 +26,12 @@ def update_function(access_token, project_id, location, function_name, gsutil_ur
         print(f"    - Function Invocation URL: {url}")
 
     except Exception as e:
-        error_message = str(e)
-        if "'cloudfunctions.functions.update' denied" in error_message:
+        if "cloudfunctions.googleapis.com" in str(e):
+            print("     - Cloud Function API is disabled, please enable it and try again.")
+        elif "'cloudfunctions.functions.update' denied" in str(e):
             print(f"    - You can't Update the Cloud Function {function_name} since you don't have the 'cloudfunctions.functions.update' permission")
-        elif "'cloudfunctions.operations.get' denied" in error_message:
+        elif "'cloudfunctions.operations.get' denied" in str(e):
             print("    - Permission cloudfunctions.operations.get denied (Not an Issue)")
             print(f"    - Function Invocation URL: {url}")
         else:
-            print(f"    - Error: {error_message}")
+            print(f"    - Error: {str(e)}")

@@ -1,6 +1,6 @@
-import argparse
 from google.cloud.functions_v1 import CloudFunctionsServiceClient, CloudFunction, CreateFunctionRequest
 import google.oauth2.credentials
+#from service_status.cloudbuild_status import cloudbuild_status
 
 def deploy_function(access_token, project_id, location, function_name, gsutil_uri, function_entry_point, service_account):
     credentials = google.oauth2.credentials.Credentials(access_token)
@@ -27,8 +27,14 @@ def deploy_function(access_token, project_id, location, function_name, gsutil_ur
         print(f"    - Function Invocation URL: {url}")
 
     except Exception as e:
-        if "cloudfunctions.operations.get" in str(e):
+        if "cloudfunctions.googleapis.com" in str(e):
+            #print(f"    - Error: {str(e)}")
+            print("    - Cloud Function API is disabled, please enable it and try again.")
+            print("    - Function can't be Deployed/Updated.")
+            print("    - Run 'gcloud services enable cloudfunctions.googleapis.com' to enable Cloud Function API")
+        elif "cloudfunctions.operations.get" in str(e):
             print("    - Permission cloudfunctions.operations.get denied (Not an Issue)")
             print(f"    - Function Invocation URL: {url}")
         else:
             print(f"    - Error: {str(e)}")
+        #cloudbuild_status(project_id, access_token)

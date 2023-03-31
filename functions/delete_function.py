@@ -15,8 +15,11 @@ def delete_function(access_token, project_id, location, function_name):
         print(f"    - Cloud Function {function_name} deleted successfully")
 
     except Exception as e:
-        error_message = str(e)
-        if "'cloudfunctions.functions.delete' denied" in error_message:
+        if "cloudfunctions.googleapis.com" in str(e):
+            print("     - Cloud Function API is disabled, please enable it and try again.") 
+            print("     - Run 'gcloud services enable cloudfunctions.googleapis.com' to enable Cloud Function API")
+       
+        elif "'cloudfunctions.functions.delete' denied" in str(e):
             print(f"    - You can't delete the Cloud Function {function_name} since you don't have the 'cloudfunctions.functions.delete' permission")
         else:
-            print(f"    - Error: {error_message}")
+            print(f"    - Error: {str(e)}")

@@ -8,8 +8,31 @@ from functions.update_function import update_function
 from service_account.createserviceaccountkey import createserviceaccountkey
 from functions.list_functions import list_functions
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--checkperm", action="store_true", help="Skip Checking user Permissions")
+#parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser(description="Cloud Functions management script",
+                                 usage="%(prog)s [--project-id] [options]\n\n"
+                                       "[+] To Check permissions:\n"
+                                       "    %(prog)s --project-id abc-123456 --checkperm\n\n"
+                                       "[+] To Deploy a Cloud Function:\n"
+                                       "    %(prog)s --project-id abc-123456 --location us-east1 --function-name function1 "
+                                       "--gsutil-uri gs://bucket/function.zip --function-entry-point function "
+                                       "--service-account 1234567890-compute@developer.gserviceaccount.com --deploy\n\n"
+                                       "[+] To Update a Cloud Function:\n"
+                                       "    %(prog)s --project-id abc-123456 --location us-east1 --function-name function1 "
+                                       "--gsutil-uri gs://bucket/function.zip --function-entry-point function "
+                                       "--service-account 1234567890-compute@developer.gserviceaccount.com --update\n\n"
+                                       "[+] To Bind an IAM Policy to the Cloud Function:\n"
+                                       "    %(prog)s --project-id abc-123456 --location us-east1 --function-name function1 "
+                                       "--setiambinding allUsers\n\n"
+                                       "[+] To Delete a Cloud Function:\n"
+                                       "    %(prog)s --project-id abc-123456 --location us-east1 --function-name function1 "
+                                       "--delete\n\n"
+                                       "[+] To List Cloud Functions:\n"
+                                       "    %(prog)s --project-id abc-123456 --list\n\n"
+                                       "[+] To Create and Download a Service Account Key:\n"
+                                       "    %(prog)s --project-id abc-123456 --createsakey\n\n")
+
+parser.add_argument("--checkperm", action="store_true", help="Checking your Permissions")
 parser.add_argument("--list", action="store_true", help="List Cloud Functions")
 parser.add_argument("--deploy", action="store_true", help="Deploy a Function")
 parser.add_argument("--update", action="store_true", help="Updates an Existing Function")

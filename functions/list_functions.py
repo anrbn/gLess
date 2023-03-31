@@ -1,6 +1,4 @@
-import argparse
-from google.cloud.functions_v1 import CloudFunctionsServiceClient
-from google.cloud.functions_v1.types import ListFunctionsRequest
+from google.cloud.functions_v1 import CloudFunctionsServiceClient, ListFunctionsRequest
 import google.oauth2.credentials
 
 def list_functions(access_token, project_id):
@@ -8,11 +6,14 @@ def list_functions(access_token, project_id):
     credentials = google.oauth2.credentials.Credentials(access_token)
     client = CloudFunctionsServiceClient(credentials=credentials)
     parent = f"projects/{project_id}/locations/-"
-    functions = client.list_functions(request={"parent": parent})
-    
+ 
     print("\n[+] List Cloud Functions (--list)")
+
     try:
+        functions = client.list_functions(request={"parent": parent})
+        any_functions_present = False
         for function in functions:
+            any_functions_present = True
             trigger_type = "HTTP Trigger"
             if function.event_trigger:
                 trigger_type = function.event_trigger.event_type
@@ -50,9 +51,14 @@ def list_functions(access_token, project_id):
             print(f"        Docker Registry: {dockreg}")
             print()
 
+        if not any_functions_present:
+            print("    No cloud functions present.")
+            
     except Exception as e:
-        error_message = str(e)
-        if "'cloudfunctions.functions.list' denied" in error_message:
-            print(f"    - You can't List the Cloud Functions since you don't have the 'cloudfunctions.functions.list' permission")
+        if "cloudfunctions.googleapis.com" in str(e):
+            print("     - Cloud Function API is disabled, please enable it and try again.")
         else:
-            print(f"    - Error: {error_message}")
+            print(f"    - Error: {str(e)}")
+
+
+

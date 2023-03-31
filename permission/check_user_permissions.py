@@ -89,6 +89,9 @@ def check_user_permissions(access_token, project_id):
         else:
             print("\n[!] Service Account Key can't be Created nor Downloaded.")
 
+
     except HttpError as error:
-        print(f"\n[!] Error!: {error}")
-        print("[!] Please check your access token and permissions and try again.")
+        if "cloudresourcemanager.googleapis.com" in str(error):
+            print("    - Cloud Resource Manager API is disabled, please enable it and try again.")
+        else:
+            print("    - Please check your access token and permissions and try again.")
