@@ -23,6 +23,7 @@ gLess is developed using Python 3 and requires Python 3 to run. It is compatible
 
 ```
 Arguments:
+
       --project-id                 Project ID : Specify the Project ID
       
       --location                   Region : Function Location/Region
@@ -67,8 +68,8 @@ Arguments:
                                    Requires the following arguments:
                                    --project-id, --location, --function-name, --setiambinding                              
     
-    
 Examples:
+
       # Deploy a Cloud Function
       python main.py --project-id abc-123456 --location us-east1 --function-name function1 --gsutil-uri gs://bucket/function.zip --function-entry-point function --service-account 1234567890-compute@developer.gserviceaccount.com --deploy
       # Update a Cloud Function
