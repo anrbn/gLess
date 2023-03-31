@@ -18,7 +18,7 @@ By eliminating bloated permissions, gLess does more/same with less :)
 ## Requirements and Compatibility:
 gLess is developed using Python 3 and requires Python 3 to run. It is compatible with both Windows and Unix-based systems.
 
-## Usage:
+## Usage
 Deploy a Cloud Function
 ```powershell
 main.py --project-id abc-123456 --location us-east1 --function-name function1 --gsutil-uri gs://bucket/function.zip --function-entry-point function --service-account 1234567890-compute@developer.gserviceaccount.com --deploy
@@ -47,3 +47,10 @@ Bind an IAM Policy to the Cloud Function
 ```powershell
 main.py --project-id abc-123456 --location us-east1 --function-name function1 --setiambinding allUsers
 ``` 
+## Screenshots
+<p><img src="https://github.com/anrbn/GCP-Attack-Defense/blob/main/images/36.png"></p>
+<p><img src="https://github.com/anrbn/GCP-Attack-Defense/blob/main/images/37.png"></p>
+<p><img src="https://github.com/anrbn/GCP-Attack-Defense/blob/main/images/22.png"></p>
+<p><img src="https://github.com/anrbn/GCP-Attack-Defense/blob/main/images/38.png"></p>
+
+
