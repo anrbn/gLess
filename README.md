@@ -1,5 +1,5 @@
 # gLess
-
+gLess aims to eliminate bloated and unnecessary permissions that are often encountered when performing tasks with gCloud. gLess leverage gRPC to directly interact with the Cloud Function API and execute tasks with only the required set of permissions.
 
 ## Requirements and Compatibility:
 gLess is developed using Python 3 and requires Python 3 to run. It is compatible with both Windows and Unix-based systems.
