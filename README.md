@@ -1,4 +1,5 @@
-# gLess
+<h1 align="center" style="font-size: 300px;">gLess</h1>
+
 
 gLess aims to eliminate bloated and unnecessary permissions that are often encountered when performing tasks with gCloud. gLess leverage gRPC to directly interact with the Cloud Function API and execute tasks with only the required set of permissions.
 
