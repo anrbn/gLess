@@ -1,4 +1,9 @@
-# gLess
+
+<div style="display: inline-flex; align-items: center;">
+    <img src="https://github.com/anrbn/GCP-Attack-Defense/blob/main/images/logo.PNG" alt="gLess" width="200" height="auto">
+    <h1 style="margin-left: 10px;">gLess</h1>
+</div>
+
 gLess aims to eliminate bloated and unnecessary permissions that are often encountered when performing tasks with gCloud. gLess leverage gRPC to directly interact with the Cloud Function API and execute tasks with only the required set of permissions.
 
 ## Tools Purpose
