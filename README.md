@@ -94,10 +94,10 @@ Examples:
 ```
 
 ## Screenshots
-<p><img src="https://github.com/anrbn/GCP-Attack-Defense/tree/main/images/CloudFunction/PrivEsc-via-CloudFunction/36.png"></p>
-<p><img src="https://github.com/anrbn/GCP-Attack-Defense/tree/main/images/CloudFunction/PrivEsc-via-CloudFunction/37.png"></p>
-<p><img src="https://github.com/anrbn/GCP-Attack-Defense/tree/main/images/CloudFunction/PrivEsc-via-CloudFunction/22.png"></p>
-<p><img src="https://github.com/anrbn/GCP-Attack-Defense/tree/main/images/CloudFunction/PrivEsc-via-CloudFunction/38.png"></p>
+<p><img src="https://github.com/anrbn/GCP-Attack-Defense/blob/main/images/CloudFunction/PrivEsc-via-CloudFunction/36.png"></p>
+<p><img src="https://github.com/anrbn/GCP-Attack-Defense/blob/main/images/CloudFunction/PrivEsc-via-CloudFunction/37.png"></p>
+<p><img src="https://github.com/anrbn/GCP-Attack-Defense/blob/main/images/CloudFunction/PrivEsc-via-CloudFunction/22.png"></p>
+<p><img src="https://github.com/anrbn/GCP-Attack-Defense/blob/main/images/CloudFunction/PrivEsc-via-CloudFunction/38.png"></p>
 
 
 
